@@ -26,10 +26,14 @@ public class FirstNonRepeatChar {
                 .boxed()
                 .collect(java.util.stream.Collectors.groupingBy(c -> c, java.util.stream.Collectors.counting()));
 
-        return st.chars()
-                .boxed()
-                .filter(c -> charCount.get(c) == 1)
-                .mapToInt(c -> st.indexOf(c))
+//        return st.chars()
+//                .boxed()
+//                .filter(c -> charCount.get(c) == 1)
+//                .mapToInt(c -> st.indexOf(c))
+//                .findFirst()
+//                .orElse(-1);
+        return java.util.stream.IntStream.range(0, st.length())
+                .filter(i -> charCount.get((int) st.charAt(i)) == 1)
                 .findFirst()
                 .orElse(-1);
     }
