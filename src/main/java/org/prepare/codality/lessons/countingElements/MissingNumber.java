@@ -1,6 +1,10 @@
 package org.prepare.codality.lessons.countingElements;
 
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /***
  *
@@ -33,6 +37,18 @@ public class MissingNumber {
         }
 
         return smallestPositive; // Return the result
+    }
+
+    public static int solutionWithStream(int[] A) {
+        Set<Integer> positiveNumbers = Arrays.stream(A)
+                .filter(num -> num > 0)
+                .boxed()
+                .collect(Collectors.toSet());
+
+        return IntStream.range(1, 100001)
+                .filter(num -> !positiveNumbers.contains(num))
+                .findFirst()
+                .orElse(1);
     }
 
     public static void main(String[] args) {
